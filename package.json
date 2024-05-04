@@ -1,0 +1,23 @@
+{
+  "name": "app",
+  "version": "1.0.50",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-rust": "cargo build --release",
+    "build-c": "gcc -shared -fPIC src/fibonacci.c -o target/fibonaccic.so -O3",
+    "build-go": "go build -o target/fibonaccigo.so -buildmode=c-shared src/fibonacci.go",
+    "dev": "bun run --watch src/index.ts"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^1.0.2",
+    "@elysiajs/swagger": "^1.0.5",
+    "elysia": "latest",
+    "ffi-rs": "^1.0.69"
+  },
+  "devDependencies": {
+    "@types/babar": "^0.2.4",
+    "babar": "^0.2.3",
+    "bun-types": "latest"
+  },
+  "module": "src/index.js"
+}
