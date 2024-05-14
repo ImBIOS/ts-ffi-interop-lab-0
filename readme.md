@@ -4,6 +4,9 @@ This lab is a hands-on introduction to TypeScript's Foreign Function Interface (
 
 ## How to run Benchmark
 
+1. Compile all the languages
+2. Run the benchmark
+
 ```bash
 bun run benchmark/index.ts
 ```

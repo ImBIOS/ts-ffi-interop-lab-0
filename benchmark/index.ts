@@ -2,7 +2,7 @@ import babar from "babar";
 import lib from "../lib";
 
 const RUNS = 100;
-const FIB_SEQ = 36;
+const FIB_SEQ = 35;
 
 // returns the nanoseconds needed for the run
 function run(lang: string) {
@@ -30,6 +30,8 @@ const goData = run("go");
 console.log("go  ", goData);
 const jsData = run("js");
 console.log("js  ", jsData);
+const phpData = run("php");
+console.log("php ", phpData);
 
 console.log("\n");
 
@@ -39,6 +41,7 @@ console.log(
 		[1, rustData],
 		[2, goData],
 		[3, jsData],
+		[4, phpData],
 	]),
 );
 
@@ -49,6 +52,7 @@ console.table([
 	{ lang: "rust", time: rustData },
 	{ lang: "go", time: goData },
 	{ lang: "js", time: jsData },
+	{ lang: "php", time: phpData },
 ]);
 
 console.log("\n");

@@ -1,6 +1,6 @@
-import { exec } from "child_process";
+import { execSync } from "child_process";
 import path from "path";
-import { DataType, define, load, open } from "ffi-rs";
+import { DataType, load, open } from "ffi-rs";
 
 open({
 	library: "librust",
@@ -60,10 +60,12 @@ const goFibonacci = (n: number) =>
 
 const phpScriptPath = path.join(__dirname, "../src/fibonacci.php");
 const phpFibonacci = (n: number) => {
-	exec(`php ${phpScriptPath} ${n}`, (err, phpResponse, stderr) => {
-		if (err) console.log(err); /* log error */
-		console.log(phpResponse);
-	});
+	const result = execSync(`php ${phpScriptPath} ${n}`, { encoding: "utf8" });
+	const isNumber = /^\d+$/.test(result.trim());
+	if (isNumber) {
+		return parseInt(result);
+	}
+	throw new Error(result);
 };
 
 function jsFibonacci(n: number): number {
