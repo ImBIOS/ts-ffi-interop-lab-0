@@ -1,8 +1,12 @@
 import babar from "babar";
 import lib from "../lib";
 
-const RUNS = 100;
-const FIB_SEQ = 35;
+// Get value from CLI parameter or set default value
+const FIB_SEQ = process.argv[2] ? parseInt(process.argv[2]) : 40;
+console.log("Fibonacci Sequence:", FIB_SEQ);
+const RUNS = process.argv[3] ? parseInt(process.argv[3]) : 100;
+console.log("Runs:", RUNS);
+console.log("\n");
 
 // returns the nanoseconds needed for the run
 function run(lang: string) {
