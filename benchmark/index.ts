@@ -26,38 +26,65 @@ function run(lang: string) {
 	return timeTaken;
 }
 
-const cData = run("c");
-console.log("c   ", cData);
-const rustData = run("rust");
-console.log("rust", rustData);
-const goData = run("go");
-console.log("go  ", goData);
-const jsData = run("js");
-console.log("js  ", jsData);
-const phpData = run("php");
-console.log("php ", phpData);
-
-console.log("\n");
-
-console.log(
-	babar([
-		[0, cData],
-		[1, rustData],
-		[2, goData],
-		[3, jsData],
-		[4, phpData],
-	]),
-);
-
-console.log("\n");
-
-console.table([
-	{ lang: "c", time: cData },
-	{ lang: "rust", time: rustData },
-	{ lang: "go", time: goData },
-	{ lang: "js", time: jsData },
-	{ lang: "php", time: phpData },
+const dataset = new Map<string, number[]>([
+	["c", []],
+	["rust", []],
+	["go", []],
+	["js", []],
+	["php", []],
 ]);
+
+// const cData = run("c");
+// console.log("c   ", cData);
+// const rustData = run("rust");
+// console.log("rust", rustData);
+// const goData = run("go");
+// console.log("go  ", goData);
+// const jsData = run("js");
+// console.log("js  ", jsData);
+// const phpData = run("php");
+// console.log("php ", phpData);
+
+for (const [lang, data] of dataset) {
+	const time = run(lang);
+	console.log(lang, time);
+	data.push(time);
+}
+
+console.log("\n");
+
+// console.log(
+// 	babar([
+// 		[0, cData],
+// 		[1, rustData],
+// 		[2, goData],
+// 		[3, jsData],
+// 		[4, phpData],
+// 	]),
+// );
+
+const chartData: [number, number][] = [];
+let i = 0;
+for (const [_, data] of dataset) {
+	chartData.push([i++, data[0]]);
+}
+console.log(babar(chartData));
+
+console.log("\n");
+
+// console.table([
+// 	{ lang: "c", time: cData },
+// 	{ lang: "rust", time: rustData },
+// 	{ lang: "go", time: goData },
+// 	{ lang: "js", time: jsData },
+// 	{ lang: "php", time: phpData },
+// ]);
+
+const tableData = [];
+for (const [lang, data] of dataset) {
+	tableData.push({ lang, time: data });
+}
+console.table(tableData);
 
 console.log("\n");
 
